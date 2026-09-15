@@ -31,7 +31,7 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         headless: true,
-        executablePath: '/opt/render/.cache/puppeteer/chrome/linux-146.0.7688.31/chrome-linux64/chrome', // Forces Render to find the downloaded binary
+        executablePath: '/usr/bin/google-chrome', // This targets Render's official system native chrome path
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
