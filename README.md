@@ -1,71 +1,72 @@
 # WA Offline Redirect (WhatsApp to Signal Detour) 🚀
 
-An automated open-source solution that forces your WhatsApp presence status to **Offline** and immediately intercepts incoming private messages with an automated text redirecting contacts to your **Signal** profile. 
+An automated open-source routing engine that forces your WhatsApp presence status to **Offline** and immediately intercepts incoming private messages with an automated text redirecting contacts directly to your **Signal** profile. 
 
-Perfect for users migrating away from WhatsApp who want a 24/7 self-hosted routing engine without keeping their local computers turned on.
+Optimized to run seamlessly 24/7 on **Render's Free Background Worker** infrastructure without requiring your local computer or primary phone to remain turned on.
 
 ---
 
 ## ✨ Features
 
-- 🖥️ **24/7 Cloud Execution:** Hosted entirely on Render's free tier. Your phone and laptop can be completely shut down.
-- 🕵️‍♂️ **Forced Offline Presence:** Automatically flags your status as unavailable to hide your active state.
-- 🔕 **Group Chat Filtering:** Smart filtering completely ignores group chats and broadcast updates to prevent spamming.
-- 🔒 **Privacy First:** Sensitive credentials and your Signal link are managed safely through cloud environment variables, making this repository 100% safe to be **Public**.
-- ☕ **Keep-Alive Core:** Built-in self-pinging routine prevents Render's free tier from going to sleep.
+- 🖥️ **24/7 Cloud Isolation:** Hosted entirely on Render as a Background Worker. Your phone and laptop can be completely powered off.
+- 🕵️‍♂️ **Forced Offline Presence:** Automatically flags your status as unavailable to mask your active timeline.
+- 🔕 **Group Chat Filtering:** Smart filtering completely drops group chat payloads and broadcast updates to prevent loop spam.
+- 📦 **Persistent Local Storage:** Locks Puppeteer browser binaries safely inside localized project cache folders to survive automated server restarts.
+- 🔒 **Privacy Safeguarded:** Critical profile data and your Signal destination link are pulled from sandboxed environment variables, keeping this public repository 100% safe.
 
 ---
 
 ## 🛠️ Architecture & Core Dependencies
 
 - [whatsapp-web.js](https://github.com) - Node.js WhatsApp Web API framework.
-- [Express](https://expressjs.com) - Minimalist web server to handle platform health checks.
-- [Axios](https://axios-http.com) - Extensible HTTP client for running the keep-alive routing engine.
-- [Puppeteer (Chromium)](https://pptr.dev) - Headless web automation runner.
+- [Express](https://expressjs.com) - Baseline application health server core.
+- [Axios](https://axios-http.com) - Integrated Keep-Alive trigger mechanics.
+- [Puppeteer (Chromium)](https://pptr.dev) - Headless browser automation runtime.
 
 ---
 
 ## 🚀 Step-by-Step Deployment Instructions
 
-### 1. Repository Setup & Editing Code
-1. Fork or clone this repository to your personal GitHub account.
-2. Ensure your `index.js` uses the environment variable block to protect your identity:
-   ```javascript
-   const signalLink = process.env.SIGNAL_LINK || "https://signal.me";
-   ```
-3. Keep this repository public or private depending on your preference.
+### 1. Repository Check
+Ensure your `index.js` file handles your contact coordinates securely through environment configurations:
+```javascript
+const signalLink = process.env.SIGNAL_LINK || "https://signal.me";
+```
 
 ### 2. Configure Cloud Environment on Render
 1. Create a free account at [Render](https://render.com).
-2. Click **New +** and select **Web Service**.
-3. Link your GitHub account and select this repository.
-4. Set the following Build settings:
+2. Click **New +** and select **Background Worker** *(Do not choose Web Service)*.
+3. Connect your GitHub profile and select this repository.
+4. Set the following build options:
    - **Runtime:** `Node`
-   - **Build Command:** `chmod +x render-build.sh && ./render-build.sh`
-   - **Start Command:** `npm start`
-   - **Instance Type:** `Free`
+   - **Build Command:** `npm install && npx puppeteer browsers install chrome`
+   - **Start Command:** `node index.js`
+   - **Instance Type:** `Free` (\$0/mo)
 
-### 3. Inject Critical Environment Variables 🔒
-Before clicking deploy, expand the **Advanced Options** section at the bottom of the config page and select **Add Environment Variable**:
+### 3. Add Advanced Environment Variables 🔒
+Before hitting deploy, expand **Advanced Options** and input these parameters to secure your assets and prevent disk cleanup errors:
 
 | Key | Value | Description |
 | :--- | :--- | :--- |
-| `SIGNAL_LINK` | `https://signal.me` | Your actual, private Signal chat URL. |
-| `RENDER_EXTERNAL_URL` | *(Leave Blank)* | Render will bind this automatically to run the keep-alive routine. |
+| `SIGNAL_LINK` | `https://signal.me` | Your hidden, actual Signal profile URL. |
+| `PUPPETEER_CACHE_DIR` | `/opt/render/project/src/.puppeteer_cache` | Forces Render to retain your Chrome binary on restart. |
 
-Click **Create Web Service**.
-
-### 4. Sync & Link Your Identity (One-Time Setup)
-1. Navigate to the **Logs** tab in your Render service dashboard.
-2. Wait for the compilation script to download Chromium and launch the bot engine.
-3. A large **QR code made out of text characters** will print directly inside the cloud console log.
-4. Quickly unlock your smartphone, open **WhatsApp**, tap **Linked Devices** -> **Link a Device**, and frame your camera over the log stream's QR code.
-5. Once synced, the console logs will clear and print `Connected to WhatsApp!`.
+Click **Create Background Worker**.
 
 ---
 
-## 🛑 Turning Off Your Equipment
-Once connected, your node runtime is completely isolated in the cloud. You can now safely **shut down your laptop**, turn off your PC, or disconnect your phone's cellular network data. The server will intercept signals and message users back autonomously.
+## 📱 One-Time Identity Linking Strategy
+
+1. Navigate straight to your service workspace's **Logs** streaming panel.
+2. Allow the machine 1–2 minutes to pull dependency maps and construct the virtual filesystem.
+3. Once running, a large **QR code formatted out of raw text blocks** will print inside the console log lines.
+4. **Act quickly:** Open **WhatsApp** on your phone ➡️ **Settings/Linked Devices** ➡️ **Link a Device**, and target your phone camera at the console window QR layout before Render's 60-second system idle timer triggers a container refresh.
+5. Upon registration, the console will track code clearance and output: `Bot is linked to your WhatsApp cluster!`.
+
+---
+
+## 🛑 Equipment Shutdown
+Once linked, your account loop is safely suspended inside the remote cloud server grid. You can now completely shutdown your computer, terminate your laptop terminal sessions, or lose mobile network connection—the node background service will intercept any inbound private messages autonomously.
 
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
